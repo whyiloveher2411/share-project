@@ -1,4 +1,13 @@
 {
+  "name": "share-project",
+  "version": "1.0.0",
+  "description": "share-project for spacedev",
+  "author": "DTQ",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "axios": "^1.3.4",
     "cheerio": "^1.0.0-rc.12",
