@@ -5,6 +5,11 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
+    res.send('HTML saved to file!');
+})
+
+
+app.get('/_prev-static', (req, res) => {
 
     const folderName = 'static';
 
