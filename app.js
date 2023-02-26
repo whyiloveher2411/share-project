@@ -4,7 +4,7 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
+app.get('/(.*)', (req, res) => {
     res.send('HTML saved to file!2');
 })
 
