@@ -16,7 +16,7 @@ app.get(/.*/, async (req, res) => {
         /yandexbot/i,
         /sogou/i,
         /exabot/i,
-        /facebot/i,
+        /facebook/i,
         /twitterbot/i
     ];
 
