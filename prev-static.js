@@ -1,8 +1,5 @@
-const express = require('express');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-const app = express();
-const port = 3000;
 const folderName = 'static';
 
 const courses = [
@@ -15,48 +12,32 @@ const explores = [
 ];
 
 
-app.get('/', (req, res) => {
-
-    // check if folder exists
-    if (!fs.existsSync(folderName)) {
-        // create folder if it doesn't exist
-        fs.mkdirSync(folderName);
-    }
-
-    (async () => {
+// check if folder exists
+if (!fs.existsSync(folderName)) {
+    // create folder if it doesn't exist
+    fs.mkdirSync(folderName);
+}
 
 
+// check if folder exists
+if (!fs.existsSync(folderName + '/course')) {
+    // create folder if it doesn't exist
+    fs.mkdirSync(folderName + '/course');
+}
 
-        // check if folder exists
-        if (!fs.existsSync(folderName + '/course')) {
-            // create folder if it doesn't exist
-            fs.mkdirSync(folderName + '/course');
-        }
+// check if folder exists
+if (!fs.existsSync(folderName + '/explore')) {
+    // create folder if it doesn't exist
+    fs.mkdirSync(folderName + '/explore');
+}
 
-        // check if folder exists
-        if (!fs.existsSync(folderName + '/explore')) {
-            // create folder if it doesn't exist
-            fs.mkdirSync(folderName + '/explore');
-        }
+courses.forEach(slug => {
+    createStaticFile('https://spacedev.vn/course/' + slug, folderName + '/course/' + slug + '.html');
+});
 
-        courses.forEach(slug => {
-            createStaticFile('https://spacedev.vn/course/' + slug, folderName + '/course/' + slug + '.html');
-        });
-
-        explores.forEach(slug => {
-            createStaticFile('https://spacedev.vn/explore/' + slug, folderName + '/explore/' + slug + '.html');
-        });
-
-    })();
-    res.send('HTML saved to file!');
-})
-
-
-app.set('timeout', 600000); // Set timeout to 10 minutes
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+explores.forEach(slug => {
+    createStaticFile('https://spacedev.vn/explore/' + slug, folderName + '/explore/' + slug + '.html');
+});
 
 
 async function createStaticFile(domain, filename) {
