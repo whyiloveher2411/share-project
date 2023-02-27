@@ -33,8 +33,8 @@ app.get(/.*/, async (req, res) => {
             console.log(err);
             res.send('HTML');
         }
-    }else{
-        res.send('HTML website');
+    } else {
+        res.redirect('https://api.spacedev.vn' + url);
     }
 })
 
