@@ -34,7 +34,7 @@ app.get(/.*/, async (req, res) => {
             res.send('HTML');
         }
     } else {
-        res.send('<meta http-equiv="Refresh" content="0; url=https://api.spacedev.vn' + url + ' />');
+        res.send('<h1>HTML</h1>');
     }
 })
 
