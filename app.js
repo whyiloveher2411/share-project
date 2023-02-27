@@ -1,22 +1,22 @@
 const express = require('express');
-const puppeteer = require('puppeteer');
+const axios = require('axios');
 const fs = require('fs');
 const app = express();
 const port = 3000;
-const folderName = 'static';
 
-app.get(/.*/, (req, res) => {
+app.get(/.*/, async (req, res) => {
 
     const url = req.url;
-
     try {
-        const data = fs.readFileSync(folderName + url + '.html', 'utf8');
-        res.send(data);
+        console.log('https://api.spacedev.vn/static' + url + '.html');
+        const response = await axios.get('https://api.spacedev.vn/static' + url + '.html');
+        const text = response.data;
+        res.send(text);
     } catch (err) {
+        console.log(err);
         res.send('HTML saved to file!23');
     }
 
-    res.send('HTML saved to file!24');
 })
 
 
