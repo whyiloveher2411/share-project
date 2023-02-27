@@ -3,15 +3,13 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const app = express();
 const port = 3000;
+const folderName = 'static';
 
-app.get(/.*/, (req, res) => {
-    res.send('HTML saved to file!2');
-})
 
 
 app.get('/_prev-static', (req, res) => {
 
-    const folderName = 'static';
+
 
     // check if folder exists
     if (!fs.existsSync(folderName)) {
@@ -48,6 +46,22 @@ app.get('/_prev-static', (req, res) => {
     })();
 
 })
+
+app.get(/.*/, (req, res) => {
+
+    const url = req.url;
+
+    try {
+        const data = fs.readFileSync(folderName + url + '.html', 'utf8');
+        res.send(data);
+    } catch (err) {
+        res.send('HTML saved to file!2');
+    }
+
+    res.send('HTML saved to file!2');
+})
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
